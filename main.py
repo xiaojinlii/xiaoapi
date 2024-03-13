@@ -4,6 +4,7 @@ FastApi Github：https://github.com/tiangolo/fastapi
 Typer 官方文档：https://typer.tiangolo.com/
 """
 
+import asyncio
 from fastapi import FastAPI
 import uvicorn
 from starlette.middleware.cors import CORSMiddleware
@@ -15,7 +16,7 @@ from core.exception import register_exception
 import typer
 from core.event import lifespan
 from core.utils import import_modules
-
+from db.migrate import create_tables
 
 shell_app = typer.Typer()
 
@@ -71,6 +72,16 @@ def run(
     应用程序工厂是一个返回 ASGI 应用程序实例的可调用对象，它可以在启动时动态创建应用程序实例。
     """
     uvicorn.run(app='main:create_app', host=host, port=port, lifespan="on", factory=True, workers=1)
+
+
+@shell_app.command()
+def init():
+    """
+    初始化数据库
+    需要迁移到数据库的模型 要在application/configs/database_config.py的MIGRATE_MODELS里配置
+    """
+    asyncio.run(create_tables())
+    print("数据库初始化完成！")
 
 
 if __name__ == '__main__':
