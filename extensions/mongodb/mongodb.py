@@ -9,10 +9,11 @@ pip install aioredis==2.0.1
 pip install redis==5.0.1
 """
 
-from fastapi import FastAPI
-from motor.motor_asyncio import AsyncIOMotorClient
+from fastapi import FastAPI, Request
+from motor.motor_asyncio import AsyncIOMotorClient, AsyncIOMotorDatabase
 
-from application.settings import MONGO_DB_URL, MONGO_DB_NAME
+from application.settings import MONGO_DB_URL, MONGO_DB_NAME, MONGO_DB_ENABLE
+from core.exception import CustomException
 
 
 async def connect_mongo(app: FastAPI, status: bool):
@@ -41,3 +42,17 @@ async def connect_mongo(app: FastAPI, status: bool):
     else:
         print("MongoDB 连接关闭")
         app.state.mongo_client.close()
+
+
+def mongo_getter(request: Request) -> AsyncIOMotorDatabase:
+    """
+    获取 mongo 数据库对象
+
+    全局挂载，使用一个数据库对象
+    """
+    if not MONGO_DB_ENABLE:
+        raise CustomException(
+            msg="请先开启 MongoDB 数据库连接！",
+            desc="请启用 application/settings.py: MONGO_DB_ENABLE"
+        )
+    return request.app.state.mongo
