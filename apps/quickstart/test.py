@@ -1,6 +1,6 @@
 import asyncio
 
-from sqlalchemy import select
+from sqlalchemy import select, delete
 
 from db.database import session_factory
 from apps.quickstart.models import *
@@ -34,11 +34,17 @@ async def select_records(session):
     print(employees)
 
 
+async def delete_records(session):
+    await session.execute(delete(Department).where(Department.id == 2))
+    await session.commit()
+
+
 async def main():
     async with session_factory() as session:
         async with session.begin():
             await insert_records(session)
             # await select_records(session)
+            # await delete_records(session)
 
 
 if __name__ == "__main__":

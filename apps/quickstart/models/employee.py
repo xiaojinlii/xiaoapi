@@ -11,7 +11,7 @@ class Employee(BaseModel):
 
     name: Mapped[str] = mapped_column(String(50), index=True, nullable=False, comment="姓名")
     nickname: Mapped[str | None] = mapped_column(String(50), nullable=True, comment="昵称")
-    dep_id: Mapped[int] = mapped_column(ForeignKey("department.id"))
+    dep_id: Mapped[int] = mapped_column(ForeignKey("department.id", ondelete='CASCADE'))
 
     department: Mapped[Department] = relationship(back_populates="employees")
 

@@ -1,13 +1,16 @@
 """
 导入 SQLAlchemy 部分
 安装： pip install sqlalchemy[asyncio]
-官方文档：https://docs.sqlalchemy.org/en/20/intro.html#installation
+官方文档：https://docs.sqlalchemy.org/en/20/
 """
 
 from typing import AsyncGenerator
-from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker, AsyncAttrs
+from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker, AsyncAttrs, AsyncEngine
 from sqlalchemy.orm import DeclarativeBase, declared_attr
 from application.settings import SQLALCHEMY_DATABASE_URL
+from sqlalchemy import event
+from sqlalchemy.engine.url import make_url
+from core.logger import logger
 
 # 官方文档：https://docs.sqlalchemy.org/en/20/orm/extensions/asyncio.html#sqlalchemy.ext.asyncio.create_async_engine
 
@@ -32,19 +35,27 @@ from application.settings import SQLALCHEMY_DATABASE_URL
 # max_overflow 参数用于配置连接池中允许的连接 "溢出" 数量。这个参数用于在高负载情况下处理连接请求的峰值。
 # 当连接池的所有连接都在使用中时，如果有新的连接请求到达，连接池可以创建额外的连接来满足这些请求，最多创建的数量由 max_overflow 参数决定。
 
+connection_params_configs = {
+    "default": {"echo": False, "echo_pool": False, "pool_pre_ping": 3600},
+    "mysql": {"echo": False, "echo_pool": False, "pool_pre_ping": 3600, "pool_size": 5, "max_overflow": 5},
+    "sqlite": {"echo": False, "echo_pool": False, "pool_pre_ping": 3600},
+}
+
+# 获取数据库类型
+database_url = make_url(SQLALCHEMY_DATABASE_URL)
+drivername = database_url.drivername.split('+')
+database_type = drivername[0]
+
+# 获取数据库连接参数
+connection_params = connection_params_configs.get(database_type, None)
+if connection_params is None:
+    logger.warning(f"The {database_type} configuration does not exist in connection_params_configs. The default "
+                   f"configuration will be used")
+    connection_params = connection_params_configs["default"]
+
 
 # 创建数据库连接
-# 注意：sqlite不支持pool_size和max_overflow
-async_engine = create_async_engine(
-    SQLALCHEMY_DATABASE_URL,
-    echo=True,
-    echo_pool=False,
-    pool_pre_ping=True,
-    pool_recycle=3600,
-    # pool_size=5,
-    # max_overflow=5,
-    connect_args={}
-)
+async_engine = create_async_engine(SQLALCHEMY_DATABASE_URL, **connection_params)
 
 # 创建数据库会话
 session_factory = async_sessionmaker(
@@ -54,6 +65,16 @@ session_factory = async_sessionmaker(
     expire_on_commit=True,
     class_=AsyncSession
 )
+
+# 数据库类型
+database_type = async_engine.dialect.name
+if database_type == "sqlite":
+    @event.listens_for(async_engine.sync_engine, "connect")
+    def set_sqlite_pragma(dbapi_connection, connection_record):
+        """开启外键约束，用于级联删除"""
+        cursor = dbapi_connection.cursor()
+        cursor.execute("PRAGMA foreign_keys=ON")
+        cursor.close()
 
 
 class Base(AsyncAttrs, DeclarativeBase):
