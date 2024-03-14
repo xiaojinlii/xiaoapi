@@ -9,7 +9,7 @@ from fastapi import FastAPI
 import uvicorn
 from starlette.middleware.cors import CORSMiddleware
 from application import settings
-from application import urls
+from application.routes import register_routes
 from starlette.staticfiles import StaticFiles  # 依赖安装：pip install aiofiles
 from core.docs import custom_api_docs
 from core.exception import register_exception
@@ -52,9 +52,8 @@ def create_app():
     # 挂在静态目录
     if settings.STATIC_ENABLE:
         app.mount(settings.STATIC_URL, app=StaticFiles(directory=settings.STATIC_ROOT))
-    # 引入应用中的路由
-    for url in urls.urlpatterns:
-        app.include_router(url["ApiRouter"], prefix=url["prefix"], tags=url["tags"])
+    # 注册路由
+    register_routes(app)
     # 配置接口文档静态资源
     custom_api_docs(app)
     return app
