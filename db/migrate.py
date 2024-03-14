@@ -5,11 +5,11 @@
 import asyncio
 
 from application import settings
-from core.utils import import_dynamic_modules
+from core.utils import import_modules
 from db.database import async_engine, Base
 
 
-import_dynamic_modules(settings.MIGRATE_MODELS, "数据库迁移")
+import_modules(settings.MIGRATE_MODELS, "数据库迁移")
 
 
 async def create_tables():

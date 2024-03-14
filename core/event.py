@@ -6,13 +6,13 @@ from fastapi import FastAPI
 from application.settings import EVENTS
 from contextlib import asynccontextmanager
 
-from core.utils import import_modules_async
+from core.utils import import_functions_async
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    await import_modules_async(EVENTS, "全局事件", app=app, status=True)
+    await import_functions_async(EVENTS, "全局事件", app=app, status=True)
 
     yield
 
-    await import_modules_async(EVENTS, "全局事件", app=app, status=False)
+    await import_functions_async(EVENTS, "全局事件", app=app, status=False)

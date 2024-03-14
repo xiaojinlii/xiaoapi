@@ -15,7 +15,7 @@ from core.docs import custom_api_docs
 from core.exception import register_exception
 import typer
 from core.event import lifespan
-from core.utils import import_modules
+from core.utils import import_functions
 from db.migrate import create_tables
 
 shell_app = typer.Typer()
@@ -37,7 +37,7 @@ def create_app():
         docs_url=None,
         redoc_url=None
     )
-    import_modules(settings.MIDDLEWARES, "中间件", app=app)
+    import_functions(settings.MIDDLEWARES, "中间件", app=app)
     # 全局异常捕捉处理
     register_exception(app)
     # 跨域解决
