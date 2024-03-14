@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from modules.quickstart.routes import route as quickstart_route
+from modules.quickstart.routes import router as quickstart_router
 
 
 def register_routes(app: FastAPI):
@@ -8,4 +8,4 @@ def register_routes(app: FastAPI):
     注册路由
     """
 
-    app.include_router(quickstart_route, prefix="/quickstart", tags=["快速开始"])
+    app.include_router(quickstart_router, prefix="/quickstart", tags=["快速开始"])
