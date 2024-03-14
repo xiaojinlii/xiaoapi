@@ -6,7 +6,7 @@ from utils.response import SuccessResponse
 from db.database import db_getter
 from db.dependencies import IdList
 from . import schemas, models, crud
-from .params import EmployeeParams, DepartmentParams
+from .dependencies import EmployeeParams, DepartmentParams
 
 route = APIRouter()
 
@@ -21,13 +21,13 @@ async def get_employees(
         params: EmployeeParams = Depends(),
         db: AsyncSession = Depends(db_getter)
 ):
-    # model = models.Employee
-    # options = [joinedload(model.department)]
-    # schema = schemas.EmployeeOut
+    model = models.Employee
+    options = [joinedload(model.department)]
+    schema = schemas.EmployeeOut
     datas, count = await crud.EmployeeDal(db).get_datas(
         **params.dict(),
-        # v_options=options,
-        # v_schema=schema,
+        v_options=options,
+        v_schema=schema,
         v_return_count=True
     )
     return SuccessResponse(datas, count=count)

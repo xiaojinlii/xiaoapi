@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from apps.quickstart.routes import route as quickstart_route
+from modules.quickstart.routes import route as quickstart_route
 
 
 def register_routes(app: FastAPI):

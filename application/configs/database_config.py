@@ -22,7 +22,7 @@ SQLALCHEMY_DATABASE_URL = f"sqlite+aiosqlite:///{BASE_DIR}/info.db"
 会将MIGRATE_MODELS里所有的model迁移到数据库表结构
 """
 MIGRATE_MODELS = [
-    "apps.quickstart.models.*"
+    "modules.quickstart.models.*"
 ]
 
 

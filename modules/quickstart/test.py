@@ -3,7 +3,7 @@ import asyncio
 from sqlalchemy import select, delete
 
 from db.database import session_factory
-from apps.quickstart.models import *
+from modules.quickstart.models import *
 
 
 async def insert_records(session):
