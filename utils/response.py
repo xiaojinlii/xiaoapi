@@ -1,13 +1,13 @@
-# 依赖安装：pip install orjson
-from fastapi.responses import ORJSONResponse as Response
+from fastapi.responses import ORJSONResponse as Response  # 依赖安装：pip install orjson
 from fastapi import status as http_status
-from . import status as http
+from utils import status as http
 
 
 class SuccessResponse(Response):
     """
     成功响应
     """
+
     def __init__(self, data=None, msg="success", code=http.HTTP_SUCCESS, status=http_status.HTTP_200_OK, **kwargs):
         self.data = {
             "code": code,
@@ -22,6 +22,7 @@ class ErrorResponse(Response):
     """
     失败响应
     """
+
     def __init__(self, msg=None, code=http.HTTP_ERROR, status=http_status.HTTP_200_OK, **kwargs):
         self.data = {
             "code": code,

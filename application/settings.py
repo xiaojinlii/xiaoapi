@@ -17,9 +17,8 @@ VERSION = "0.0.1"
 
 
 """
-挂载临时文件目录，并添加路由访问，此路由不会在接口文档中显示
+临时文件目录
 TEMP_DIR：临时文件目录绝对路径
-官方文档：https://fastapi.tiangolo.com/tutorial/static-files/
 """
 TEMP_DIR = os.path.join(BASE_DIR, "temp")
 
@@ -58,7 +57,7 @@ ALLOW_HEADERS = ["*"]
 中间件配置
 """
 MIDDLEWARES = [
-    "core.middleware.register_request_log_middleware",
+    "middleware.request_log_middleware.register_request_log_middleware",
 ]
 
 

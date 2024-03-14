@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import joinedload
 
-from core.response import SuccessResponse
+from utils.response import SuccessResponse
 from db.database import db_getter
 from db.dependencies import IdList
 from . import schemas, models, crud

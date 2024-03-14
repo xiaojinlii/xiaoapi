@@ -7,16 +7,15 @@ Typer 官方文档：https://typer.tiangolo.com/
 import asyncio
 from fastapi import FastAPI
 import uvicorn
-from starlette.middleware.cors import CORSMiddleware
 from application import settings
 from application.routes import register_routes
-from starlette.staticfiles import StaticFiles  # 依赖安装：pip install aiofiles
 from core.docs import custom_api_docs
-from core.exception import register_exception
-import typer
 from core.event import lifespan
-from core.utils import import_functions
+from core.exception import register_exception
+from core.middleware import register_middlewares
+from core.mounting import register_mounting
 from db.migrate import create_tables
+import typer
 
 shell_app = typer.Typer()
 
@@ -37,25 +36,18 @@ def create_app():
         docs_url=None,
         redoc_url=None
     )
-    import_functions(settings.MIDDLEWARES, "中间件", app=app)
+
+    # 注册中间件
+    register_middlewares(app)
     # 全局异常捕捉处理
     register_exception(app)
-    # 跨域解决
-    if settings.CORS_ORIGIN_ENABLE:
-        app.add_middleware(
-            CORSMiddleware,
-            allow_origins=settings.ALLOW_ORIGINS,
-            allow_credentials=settings.ALLOW_CREDENTIALS,
-            allow_methods=settings.ALLOW_METHODS,
-            allow_headers=settings.ALLOW_HEADERS
-        )
-    # 挂在静态目录
-    if settings.STATIC_ENABLE:
-        app.mount(settings.STATIC_URL, app=StaticFiles(directory=settings.STATIC_ROOT))
     # 注册路由
     register_routes(app)
     # 配置接口文档静态资源
     custom_api_docs(app)
+    # 挂载文件目录
+    register_mounting(app)
+
     return app
 
 
