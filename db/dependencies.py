@@ -2,7 +2,7 @@
 类依赖项-官方文档：https://fastapi.tiangolo.com/zh/tutorial/dependencies/classes-as-dependencies/
 """
 
-from fastapi import Body
+from fastapi import Query
 import copy
 
 
@@ -50,5 +50,5 @@ class IdList:
     """
     id 列表
     """
-    def __init__(self, ids: list[int] = Body(..., title="ID 列表")):
+    def __init__(self, ids: list[int] = Query(..., title="ID 列表")):
         self.ids = ids
