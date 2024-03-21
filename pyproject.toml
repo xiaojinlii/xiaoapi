@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fastapi-xiaojinli"
+authors = [
+    {name = "xiaojinli", email = "553555614@qq.com"},
+]
+description = "A fastapi framework for web development"
+readme = "README.md"
+requires-python = ">=3.8"
+keywords = ["fastapi", "web-framework"]
+license = {text = "MIT"}
+classifiers = [
+    "Framework :: FastAPI",
+    "Programming Language :: Python :: 3",
+]
+dependencies = [
+    "fastapi==0.110.0",
+    "uvicorn==0.25.0",
+    "typer==0.9.0",
+    "loguru==0.7.2",
+]
+dynamic = ["version"]
+
+[project.urls]
+Documentation = "https://github.com/xiaojinlii/fastapi/blob/main/README.md"
+Source = "https://github.com/xiaojinlii/fastapi"
+
+[tool.setuptools]
+packages = ["fastapi_xiaojinli"]
+
+[tool.setuptools.dynamic]
+version = {attr = "fastapi_xiaojinli.__version__"}
