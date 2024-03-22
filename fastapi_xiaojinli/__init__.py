@@ -1,10 +1,10 @@
 
+__version__ = "0.0.1"
 
-__version__ = "0.110.0"
-
-from .core.logger import logger
+# todo logger 会import settings，先注释
+# from .core.logger import logger
 
 
 __all__ = [
-    "logger",
+    # "logger",
 ]
