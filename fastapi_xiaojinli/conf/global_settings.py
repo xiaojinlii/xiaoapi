@@ -3,6 +3,8 @@ import os
 
 """项目根目录"""
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+"""fastapi_xiaojinli包根目录"""
+PACKAGE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 """安全警告: 不要在生产中打开调试运行!"""
@@ -33,6 +35,10 @@ STATIC_ENABLE = True
 STATIC_URL = "/static"
 STATIC_DIR = "static"
 STATIC_ROOT = os.path.join(BASE_DIR, STATIC_DIR)
+
+# docs ui assets root
+DOCS_URL = "/docs"
+DOCS_ROOT = os.path.join(PACKAGE_DIR, STATIC_DIR)
 
 
 """

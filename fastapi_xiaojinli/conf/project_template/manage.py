@@ -4,6 +4,7 @@ import os
 def main():
     """Run administrative tasks."""
     os.environ.setdefault('FASTAPI_SETTINGS_MODULE', 'application.settings')
+    os.environ.setdefault('FASTAPI_ROUTES_MODULE', 'application.routes.register_routes')
     try:
         from fastapi_xiaojinli.management import shell
     except ImportError as exc:
