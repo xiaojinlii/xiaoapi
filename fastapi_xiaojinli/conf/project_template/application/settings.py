@@ -29,7 +29,7 @@ STATIC_URL：路由访问
 STATIC_ROOT：静态文件目录绝对路径
 官方文档：https://fastapi.tiangolo.com/tutorial/static-files/
 """
-STATIC_ENABLE = True
+STATIC_ENABLE = False
 STATIC_URL = "/static"
 STATIC_DIR = "static"
 STATIC_ROOT = os.path.join(BASE_DIR, STATIC_DIR)
@@ -56,7 +56,7 @@ ALLOW_HEADERS = ["*"]
 中间件配置
 """
 MIDDLEWARES = [
-    "middleware.request_log_middleware.register_request_log_middleware",
+    # "middleware.request_log_middleware.register_request_log_middleware",
 ]
 
 
