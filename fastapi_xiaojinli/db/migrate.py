@@ -4,8 +4,8 @@
 
 import asyncio
 
-from application import settings
 from .database import async_engine, Base
+from ..conf import settings
 from ..core.utils import import_modules
 
 
