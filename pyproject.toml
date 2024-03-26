@@ -23,8 +23,8 @@ dependencies = [
     "loguru==0.7.2",
     "orjson==3.9.15",
     "SQLAlchemy==2.0.25",
+    "aiosqlite==0.20.0",
     "asyncmy==0.2.9",
-    "aiosqlite==0.20.0"
 ]
 dynamic = ["version"]
 

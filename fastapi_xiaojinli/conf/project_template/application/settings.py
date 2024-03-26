@@ -1,45 +1,41 @@
-import os
+"""
+FastAPI settings for project.
+"""
 
 
-"""项目根目录"""
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+from pathlib import Path
 
+# 项目根目录
+BASE_DIR = Path(__file__).resolve().parent.parent
 
-"""安全警告: 不要在生产中打开调试运行!"""
+# 注意：不要在生产中打开调试运行!
 DEBUG = False
 
-
-"""项目配置"""
+####################
+# PROJECT SETTINGS #
+####################
 TITLE = "FastAPI Framework"
 DESCRIPTION = "基于FastAPI的Web框架"
 VERSION = "0.0.1"
 
 
-"""
-临时文件目录
-TEMP_DIR：临时文件目录绝对路径
-"""
-TEMP_DIR = os.path.join(BASE_DIR, "temp")
+############
+# UVICORN #
+############
+# 监听主机IP，默认开放给本网络所有主机
+HOST = "0.0.0.0"
+# 监听端口
+PORT = 9000
+# 工作进程数
+WORKERS = 1
 
 
-"""
-挂载静态目录，并添加路由访问，此路由不会在接口文档中显示
-STATIC_ENABLE：是否启用静态目录访问
-STATIC_URL：路由访问
-STATIC_ROOT：静态文件目录绝对路径
-官方文档：https://fastapi.tiangolo.com/tutorial/static-files/
-"""
-STATIC_ENABLE = False
-STATIC_URL = "/static"
-STATIC_DIR = "static"
-STATIC_ROOT = os.path.join(BASE_DIR, STATIC_DIR)
-
-
-"""
-跨域解决
-详细解释：https://cloud.tencent.com/developer/article/1886114
-官方文档：https://fastapi.tiangolo.com/tutorial/cors/
-"""
+########
+# CORS #
+########
+# 跨域解决
+# 详细解释：https://cloud.tencent.com/developer/article/1886114
+# 官方文档：https://fastapi.tiangolo.com/tutorial/cors/
 # 是否启用跨域
 CORS_ORIGIN_ENABLE = True
 # 只允许访问的域名列表，* 代表所有
@@ -52,34 +48,55 @@ ALLOW_METHODS = ["*"]
 ALLOW_HEADERS = ["*"]
 
 
-"""
-中间件配置
-"""
+############
+# MOUNTING #
+############
+MEDIA_ENABLE = False
+# Absolute filesystem path to the directory that will hold user-uploaded files.
+# Example: "/var/www/example.com/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+# URL that handles the media served from MEDIA_ROOT.
+# Examples: "http://example.com/media/", "http://media.example.com/"
+MEDIA_URL = "/media"
+
+STATIC_ENABLE = False
+# Absolute path to the directory static files should be collected to.
+# Example: "/var/www/example.com/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+# URL that handles the static files served from STATIC_ROOT.
+# Example: "http://example.com/static/", "http://static.example.com/"
+STATIC_URL = "/static"
+
+
+##############
+# MIDDLEWARE #
+##############
+# List of middleware to use. Order is important; in the request phase, these
+# middleware will be applied in the order given, and in the response
+# phase the middleware will be applied in reverse order.
 MIDDLEWARES = [
-    # "middleware.request_log_middleware.register_request_log_middleware",
+    "fastapi_xiaojinli.middleware.request_log_middleware.register_request_log_middleware",
 ]
 
 
-"""
-全局事件配置
-"""
-EVENTS = [
+############
+# LIFESPAN #
+############
+EVENTS = []
 
-]
 
-"""
-数据库配置项
-连接引擎官方文档：https://docs.sqlalchemy.org/en/20/core/engines.html
-mysql配置说明：mysql+asyncmy://数据库用户名:数据库密码@数据库地址:数据库端口/数据库名称，需安装asyncmy
-sqlite配置说明：sqlite+aiosqlite:///数据库路径，需安装aiosqlite
-"""
+#############
+# DATABASES #
+#############
+
+# 数据库配置项
+# 连接引擎官方文档：https://docs.sqlalchemy.org/en/20/core/engines.html
+# mysql配置说明：mysql+asyncmy://数据库用户名:数据库密码@数据库地址:数据库端口/数据库名称，需安装asyncmy
+# sqlite配置说明：sqlite+aiosqlite:///数据库路径，需安装aiosqlite
 SQLALCHEMY_DATABASE_URL = f"sqlite+aiosqlite:///{BASE_DIR}/info.db"
 
-
-"""
-数据库迁移
-会将MIGRATE_MODELS里所有的model迁移到数据库表结构
-"""
+# 数据库迁移
+# 会将MIGRATE_MODELS里所有的model迁移到数据库表结构
 MIGRATE_MODELS = [
     "modules.quickstart.models.*"
 ]

@@ -17,3 +17,6 @@ def register_mounting(app: FastAPI):
 
     if settings.STATIC_ENABLE:
         app.mount(settings.STATIC_URL, app=StaticFiles(directory=settings.STATIC_ROOT))
+
+    if settings.MEDIA_ENABLE:
+        app.mount(settings.MEDIA_URL, app=StaticFiles(directory=settings.MEDIA_ROOT))
