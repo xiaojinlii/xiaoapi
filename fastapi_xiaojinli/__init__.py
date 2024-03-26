@@ -1,10 +1,10 @@
 
 __version__ = "0.0.1"
 
-# todo logger 会import settings，先注释
-# from .core.logger import logger
+from .core import logger, get_fastapi_application
 
 
 __all__ = [
-    # "logger",
+    "logger",
+    "get_fastapi_application",
 ]
