@@ -75,7 +75,7 @@ STATIC_URL = "/static"
 # middleware will be applied in the order given, and in the response
 # phase the middleware will be applied in reverse order.
 MIDDLEWARES = [
-    "fastapi_xiaojinli.middleware.request_log_middleware.register_request_log_middleware",
+    "fastapi_xiaojinli.middleware.register_request_log_middleware",
 ]
 
 

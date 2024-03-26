@@ -11,7 +11,7 @@ from sqlalchemy import event
 from sqlalchemy.engine.url import make_url
 
 from ..conf import settings
-from ..core.logger import logger
+from ..core import logger
 
 # 官方文档：https://docs.sqlalchemy.org/en/20/orm/extensions/asyncio.html#sqlalchemy.ext.asyncio.create_async_engine
 

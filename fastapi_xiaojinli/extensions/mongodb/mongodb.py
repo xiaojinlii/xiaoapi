@@ -12,8 +12,8 @@ pip install redis==5.0.1
 from fastapi import FastAPI, Request
 from motor.motor_asyncio import AsyncIOMotorClient, AsyncIOMotorDatabase
 
-from application.settings import MONGO_DB_URL, MONGO_DB_NAME, MONGO_DB_ENABLE
-from core.exception import CustomException
+from ...conf import settings
+from ...core import CustomException
 
 
 async def connect_mongo(app: FastAPI, status: bool):
@@ -25,13 +25,13 @@ async def connect_mongo(app: FastAPI, status: bool):
     """
     if status:
         client: AsyncIOMotorClient = AsyncIOMotorClient(
-            MONGO_DB_URL,
+            settings.MONGO_DB_URL,
             maxPoolSize=10,
             minPoolSize=10,
             serverSelectionTimeoutMS=5000
         )
         app.state.mongo_client = client
-        app.state.mongo = client[MONGO_DB_NAME]
+        app.state.mongo = client[settings.MONGO_DB_NAME]
         # 尝试连接并捕获可能的超时异常
         try:
             # 触发一次服务器通信来确认连接
@@ -50,7 +50,7 @@ def mongo_getter(request: Request) -> AsyncIOMotorDatabase:
 
     全局挂载，使用一个数据库对象
     """
-    if not MONGO_DB_ENABLE:
+    if not settings.MONGO_DB_ENABLE:
         raise CustomException(
             msg="请先开启 MongoDB 数据库连接！",
             desc="请启用 application/settings.py: MONGO_DB_ENABLE"

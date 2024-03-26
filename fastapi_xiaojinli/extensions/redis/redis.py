@@ -13,11 +13,11 @@ pip install redis==5.0.1
 from fastapi import FastAPI, Request
 from redis.asyncio import Redis
 
-from application.settings import REDIS_DB_URL, REDIS_DB_ENABLE
 from redis import asyncio as aioredis
 from redis.exceptions import AuthenticationError, TimeoutError, RedisError
 
-from core.exception import CustomException
+from ...conf import settings
+from ...core import CustomException
 
 
 async def connect_redis(app: FastAPI, status: bool):
@@ -51,7 +51,7 @@ async def connect_redis(app: FastAPI, status: bool):
     :return:
     """
     if status:
-        rd = aioredis.from_url(REDIS_DB_URL, decode_responses=True, health_check_interval=1)
+        rd = aioredis.from_url(settings.REDIS_DB_URL, decode_responses=True, health_check_interval=1)
         app.state.redis = rd
         try:
             response = await rd.ping()
@@ -76,6 +76,6 @@ def redis_getter(request: Request) -> Redis:
 
     全局挂载，使用一个数据库对象
     """
-    if not REDIS_DB_ENABLE:
+    if not settings.REDIS_DB_ENABLE:
         raise CustomException("请先配置Redis数据库链接并启用！", desc="请启用 application/settings.py: REDIS_DB_ENABLE")
     return request.app.state.redis

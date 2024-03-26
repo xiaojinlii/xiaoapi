@@ -6,7 +6,7 @@ import asyncio
 
 from .database import async_engine, Base
 from ..conf import settings
-from ..core.utils import import_modules
+from ..core import import_modules
 
 
 import_modules(settings.MIGRATE_MODELS, "数据库迁移")

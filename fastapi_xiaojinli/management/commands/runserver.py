@@ -2,7 +2,7 @@ import typer
 import uvicorn
 from typer import Typer
 
-from fastapi_xiaojinli.conf import settings
+from ...conf import settings
 
 
 def register_command(shell: Typer):

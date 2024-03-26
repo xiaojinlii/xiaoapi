@@ -1,3 +1,3 @@
-from fastapi_xiaojinli.db.model_base import BaseModel
+from fastapi_xiaojinli.db import BaseModel
 
 # Create your models here.

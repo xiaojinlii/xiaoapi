@@ -10,10 +10,8 @@ pip install elasticsearch[async]==8.11.0
 
 from fastapi import FastAPI, Request
 
-from application.settings import ELASTICSEARCH_ENABLE, ELASTICSEARCH_URL, \
-    ELASTICSEARCH_USER, ELASTICSEARCH_PASSWORD
-
-from core.exception import CustomException
+from ...conf import settings
+from ...core import CustomException
 
 from elasticsearch import AsyncElasticsearch, AuthenticationException
 from elastic_transport import ConnectionError
@@ -30,8 +28,8 @@ async def connect_elasticsearch(app: FastAPI, status: bool):
     if status:
         try:
             connection = AsyncElasticsearch(
-                ELASTICSEARCH_URL,
-                basic_auth=(ELASTICSEARCH_USER, ELASTICSEARCH_PASSWORD),
+                settings.ELASTICSEARCH_URL,
+                basic_auth=(settings.ELASTICSEARCH_USER, settings.ELASTICSEARCH_PASSWORD),
             )
             app.state.es = connection
 
@@ -55,7 +53,7 @@ def elasticsearch_getter(request: Request) -> AsyncElasticsearch:
 
     全局挂载，使用一个数据库对象
     """
-    if not ELASTICSEARCH_ENABLE:
+    if not settings.ELASTICSEARCH_ENABLE:
         raise CustomException("请先配置Elasticsearch链接并启用！",
                               desc="请启用 application/settings.py: ELASTICSEARCH_ENABLE")
     return request.app.state.es

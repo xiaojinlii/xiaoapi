@@ -107,14 +107,17 @@ MIGRATE_MODELS = []
 ##############
 # Redis 数据库配置
 # 格式："redis://:密码@地址:端口/数据库名称"
+REDIS_DB_ENABLE = False
 REDIS_DB_URL = "redis://:123456@177.8.0.5:6379/1"
 
 # MongoDB 数据库配置
 # 格式：mongodb://用户名:密码@地址:端口/?authSource=数据库名称
+MONGO_DB_ENABLE = False
 MONGO_DB_NAME = "fastapi"
 MONGO_DB_URL = f"mongodb://admin:123456@177.8.0.6:27017/?authSource={MONGO_DB_NAME}"
 
 # Elasticsearch 配置
+ELASTICSEARCH_ENABLE = False
 ELASTICSEARCH_USER = "elastic"
 ELASTICSEARCH_PASSWORD = "gv3Z0Nnti2gdApgzLmUN"
 ELASTICSEARCH_URL = "http://127.0.0.1:9200"

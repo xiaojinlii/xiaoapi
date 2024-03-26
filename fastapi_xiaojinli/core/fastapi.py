@@ -1,5 +1,3 @@
-import os
-
 from fastapi import FastAPI
 
 from .docs import custom_api_docs
@@ -7,7 +5,7 @@ from .event import lifespan
 from .exception import register_exception
 from .middleware import register_middlewares
 from .mounting import register_mounting
-from .utils import import_functions
+from .router import register_routes
 from ..conf import settings
 
 
@@ -29,15 +27,7 @@ def get_fastapi_application():
     )
 
     # 注册路由
-    routers_module = os.environ.get('FASTAPI_ROUTES_MODULE')
-    if not routers_module:
-        raise ValueError(
-            "Requested routers, but routers are not configured. "
-            "You must define the environment variable FASTAPI_ROUTES_MODULE "
-            "before accessing settings."
-        )
-    import_functions([routers_module], "router", app=application)
-
+    register_routes(application)
     # 注册中间件
     register_middlewares(application)
     # 全局异常捕捉处理

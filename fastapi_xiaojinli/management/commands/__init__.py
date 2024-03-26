@@ -1,7 +1,7 @@
 import os
 
 from typer import Typer
-from fastapi_xiaojinli.core.utils import import_functions
+from ...core import import_functions
 
 MODULE_TEMPLATE = "fastapi_xiaojinli.management.commands.{module}.register_command"
 

@@ -27,7 +27,7 @@ def register_command(shell: Typer):
         """
         创建模块
         """
-        from fastapi_xiaojinli.conf import settings
+        from ...conf import settings
 
         module_path = os.path.join(settings.BASE_DIR, "modules", name)
         if os.path.exists(module_path):

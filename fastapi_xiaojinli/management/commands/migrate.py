@@ -10,8 +10,8 @@ def register_command(shell: Typer):
         初始化数据库
         需要迁移到数据库的模型 要在application/configs/database_config.py的MIGRATE_MODELS里配置
         """
-        from fastapi_xiaojinli.db.migrate import create_tables as migrate_create_tables
-        from fastapi_xiaojinli.conf import settings
+        from ...db import create_tables as migrate_create_tables
+        from ...conf import settings
 
         asyncio.run(migrate_create_tables())
         print(f"数据库表结构创建成功！DATABASE_URL: {settings.SQLALCHEMY_DATABASE_URL}")
