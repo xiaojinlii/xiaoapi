@@ -5,7 +5,7 @@
 
 import os
 from loguru import logger
-from fastapi_xiaojinli.conf import settings
+from application import settings
 
 
 # 移除控制台输出
