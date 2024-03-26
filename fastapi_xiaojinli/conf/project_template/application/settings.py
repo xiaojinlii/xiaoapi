@@ -2,7 +2,7 @@
 FastAPI settings for project.
 """
 
-
+import os
 from pathlib import Path
 
 # 项目根目录

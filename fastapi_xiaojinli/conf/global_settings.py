@@ -3,6 +3,7 @@ Default FastAPI settings. Override these with settings in the module pointed to
 by the FASTAPI_SETTINGS_MODULE environment variable.
 """
 
+import os
 from pathlib import Path
 
 # Package根目录
