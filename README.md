@@ -22,14 +22,17 @@ requires-python = ">=3.8"
 │   ├── settings.py     # 项目配置文件
 └── manage.py           # 命令管理器，使用"python manage.py --help"查看全部命令
 ```
-routest
 
 ## 启动服务
 `python manage.py run-server`
 
 ## 创建表结构
 创建表结构需要在 application/settings 的 MIGRATE_MODELS 中配置模型
+
 `python manage.py create-tables`
 
 ## 创建模块
 `python manage.py create-module --name module_name`
+
+## demo演示
+- https://github.com/xiaojinlii/fastapi-demo
