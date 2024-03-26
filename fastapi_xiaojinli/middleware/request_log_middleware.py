@@ -1,6 +1,6 @@
 import time
 from fastapi import FastAPI, Request, Response
-from core.logger import logger
+from ..core.logger import logger
 
 
 def write_request_log(request: Request, response: Response):
