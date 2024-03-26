@@ -19,10 +19,10 @@ def import_functions(modules: list, desc: str, **kwargs):
         if not module:
             continue
         # try:
-        module = module[0:module.rindex(".")]
-        function = module[module.rindex(".") + 1:]
-        module_pag = importlib.import_module(module)
-        getattr(module_pag, function)(**kwargs)
+        module_name = module[0:module.rindex(".")]
+        module_function = module[module.rindex(".") + 1:]
+        module_pag = importlib.import_module(module_name)
+        getattr(module_pag, module_function)(**kwargs)
         # except ModuleNotFoundError:
         #     logger.error(f"ModuleNotFoundError：导入{desc}失败，未找到该模块：{module}")
         # except AttributeError:
@@ -35,11 +35,10 @@ async def import_functions_async(modules: list, desc: str, **kwargs):
         if not module:
             continue
         # try:
-        #
-        module = module[0:module.rindex(".")]
-        function = module[module.rindex(".") + 1:]
-        module_pag = importlib.import_module(module)
-        await getattr(module_pag, function)(**kwargs)
+        module_name = module[0:module.rindex(".")]
+        module_function = module[module.rindex(".") + 1:]
+        module_pag = importlib.import_module(module_name)
+        await getattr(module_pag, module_function)(**kwargs)
         # except ModuleNotFoundError:
         #     logger.error(f"ModuleNotFoundError：导入{desc}失败，未找到该模块：{module}")
         # except AttributeError:
