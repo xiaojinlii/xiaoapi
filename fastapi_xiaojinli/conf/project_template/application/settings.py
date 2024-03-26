@@ -82,9 +82,7 @@ MIDDLEWARES = [
 ############
 # LIFESPAN #
 ############
-EVENTS = [
-    # "fastapi_xiaojinli.extensions.redis.connect_redis",
-]
+EVENTS = []
 
 
 #############
