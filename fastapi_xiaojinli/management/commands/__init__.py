@@ -3,7 +3,7 @@ import os
 from typer import Typer
 from ...core import import_functions
 
-MODULE_TEMPLATE = "fastapi_xiaojinli.management.commands.{module}.register_command"
+MODULE_TEMPLATE = "xiaoapi.management.commands.{module}.register_command"
 
 ignore_file = [
     "__init__.py"

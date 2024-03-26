@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from fastapi_xiaojinli.response import SuccessResponse, ErrorResponse
+from xiaoapi.response import SuccessResponse, ErrorResponse
 
 from . import schemas, models, crud
 from .dependencies import *

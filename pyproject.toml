@@ -3,7 +3,7 @@ requires = ["setuptools", "setuptools-scm"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "fastapi-xiaojinli"
+name = "xiaoapi"
 authors = [
     {name = "xiaojinli", email = "553555614@qq.com"},
 ]
@@ -33,7 +33,7 @@ Documentation = "https://github.com/xiaojinlii/fastapi/blob/main/README.md"
 Source = "https://github.com/xiaojinlii/fastapi"
 
 [tool.setuptools]
-packages = ["fastapi_xiaojinli"]
+packages = ["xiaoapi"]
 
 [tool.setuptools.dynamic]
-version = {attr = "fastapi_xiaojinli.__version__"}
+version = {attr = "xiaoapi.__version__"}

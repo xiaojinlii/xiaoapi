@@ -19,4 +19,4 @@ def register_command(shell: Typer):
         factory: 在使用 uvicorn.run() 启动 ASGI 应用程序时，可以通过设置 factory 参数来指定应用程序工厂。
         应用程序工厂是一个返回 ASGI 应用程序实例的可调用对象，它可以在启动时动态创建应用程序实例。
         """
-        uvicorn.run(app='fastapi_xiaojinli.core:get_fastapi_application', host=host, port=port, lifespan="on", factory=True, workers=workers)
+        uvicorn.run(app='xiaoapi.core:get_fastapi_application', host=host, port=port, lifespan="on", factory=True, workers=workers)

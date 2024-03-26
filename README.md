@@ -3,15 +3,15 @@
 
 requires-python = ">=3.8"
 
-## 安装fastapi_xiaojinli
-`pip install git+https://github.com/xiaojinlii/fastapi-xiaojinli.git`
+## 安装xiaoapi
+`pip install git+https://github.com/xiaojinlii/xiaoapi.git`
 
 ## 创建项目
 创建项目目录及项目文件
-`python -m fastapi_xiaojinli.admin create-project --name project_name`
+`python -m xiaoapi.admin create-project --name project_name`
 
 如果项目路径已存在，并且在项目路径下，可直接使用以下命令创建项目文件
-`python -m fastapi_xiaojinli.admin create-project-files`
+`python -m xiaoapi.admin create-project-files`
 
 创建项目后，会新增一下目录结构：
 ```

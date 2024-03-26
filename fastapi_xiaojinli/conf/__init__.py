@@ -2,7 +2,7 @@
 Settings and configuration for FastAPI.
 
 Read values from the module specified by the FASTAPI_SETTINGS_MODULE environment
-variable, and then from fastapi_xiaojinli.conf.global_settings; see the global_settings.py
+variable, and then from xiaoapi.conf.global_settings; see the global_settings.py
 for a list of all possible variables.
 
 参考django源码：https://github.com/django/django/blob/main/django/conf/__init__.py
