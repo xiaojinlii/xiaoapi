@@ -29,8 +29,8 @@ dependencies = [
 dynamic = ["version"]
 
 [project.urls]
-Documentation = "https://github.com/xiaojinlii/fastapi/blob/main/README.md"
-Source = "https://github.com/xiaojinlii/fastapi"
+Documentation = "https://github.com/xiaojinlii/xiaoapi/blob/main/README.md"
+Source = "https://github.com/xiaojinlii/xiaoapi"
 
 [tool.setuptools]
 packages = ["xiaoapi"]
