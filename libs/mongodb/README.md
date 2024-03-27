@@ -1,6 +1,14 @@
 # xiaoapi-mongodb
-xiaoapi-mongodb
+[xiaoapi](https://github.com/xiaojinlii/xiaoapi)的mongodb扩展包
 
+
+## 安装
+```
+pip install xiaoapi-mongodb
+```
+
+
+## 配置
 需要在 application/settings 中 添加以下配置：
 ```python
 # MongoDB 数据库配置
@@ -10,7 +18,7 @@ MONGO_DB_NAME = "fastapi"
 MONGO_DB_URL = f"mongodb://admin:123456@177.8.0.6:27017/?authSource={MONGO_DB_NAME}"
 ```
 
-然后在 application/settings 中的 EVENTS 里引入 
+然后在 application/settings 中的 EVENTS 里引入 xiaoapi_mongodb
 ```python
 EVENTS = [
     "xiaoapi_mongodb.connect_mongo",

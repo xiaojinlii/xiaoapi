@@ -23,9 +23,9 @@ dependencies = [
 dynamic = ["version"]
 
 [project.urls]
-"Documentation" = "https://github.com/xiaojinlii/xiaoapi/blob/main/README.md"
+"Documentation" = "https://github.com/xiaojinlii/xiaoapi/blob/main/libs/mongodb/README.md"
 "Repository" = "https://github.com/xiaojinlii/xiaoapi"
-"Source Code" = "https://github.com/xiaojinlii/xiaoapi"
+"Source Code" = "https://github.com/xiaojinlii/xiaoapi/tree/main/libs/mongodb"
 
 [tool.setuptools]
 packages = ["xiaoapi_mongodb"]
