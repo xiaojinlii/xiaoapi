@@ -1,10 +1,12 @@
-# fastapi
-基于FastAPI的封装
+# xiaoapi
+基于FastAPI封装的快速开发框架
 
-requires-python = ">=3.8"
 
 ## 安装xiaoapi
-`pip install git+https://github.com/xiaojinlii/xiaoapi.git`
+```
+pip install xiaoapi
+```
+
 
 ## 创建项目
 创建项目目录及项目文件
@@ -23,16 +25,12 @@ requires-python = ">=3.8"
 └── manage.py           # 命令管理器，使用"python manage.py --help"查看全部命令
 ```
 
+
 ## 启动服务
-`python manage.py run-server`
+```
+python manage.py run-server
+```
 
-## 创建表结构
-创建表结构需要在 application/settings 的 MIGRATE_MODELS 中配置模型
-
-`python manage.py create-tables`
-
-## 创建模块
-`python manage.py create-module --name module_name`
 
 ## demo演示
-- https://github.com/xiaojinlii/fastapi-demo
+- https://github.com/xiaojinlii/xiaoapi-demo

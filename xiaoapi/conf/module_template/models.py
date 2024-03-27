@@ -1,3 +1,3 @@
-from xiaoapi.db import BaseModel
+from xiaoapi_sqlalchemy import BaseModel
 
 # Create your models here.
