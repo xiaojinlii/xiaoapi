@@ -10,7 +10,7 @@ authors = [
 description = "A fastapi framework for web development"
 readme = "README.md"
 requires-python = ">=3.8"
-keywords = ["fastapi", "web-framework"]
+keywords = ["xiaoapi", "fastapi", "web-framework"]
 license = {text = "MIT"}
 classifiers = [
     "Framework :: FastAPI",
