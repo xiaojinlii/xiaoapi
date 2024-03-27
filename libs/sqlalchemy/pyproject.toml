@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "xiaoapi-sqlalchemy"
+authors = [
+    {name = "xiaojinli", email = "553555614@qq.com"},
+]
+description = "xiaoapi sqlalchemy"
+readme = "README.md"
+requires-python = ">=3.8"
+keywords = ["xiaoapi", "fastapi", "web-framework", "sqlalchemy"]
+license = {text = "MIT"}
+classifiers = [
+    "Framework :: FastAPI",
+    "Programming Language :: Python :: 3",
+]
+dependencies = [
+    "xiaoapi==0.0.1",
+    "SQLAlchemy==2.0.25",
+    "aiosqlite==0.20.0",
+]
+dynamic = ["version"]
+
+[project.urls]
+"Documentation" = "https://github.com/xiaojinlii/xiaoapi/blob/main/README.md"
+"Repository" = "https://github.com/xiaojinlii/xiaoapi"
+"Source Code" = "https://github.com/xiaojinlii/xiaoapi"
+
+[tool.setuptools]
+packages = ["xiaoapi_sqlalchemy"]
+
+[tool.setuptools.dynamic]
+version = {attr = "xiaoapi_sqlalchemy.__version__"}
