@@ -17,7 +17,7 @@ classifiers = [
     "Programming Language :: Python :: 3",
 ]
 dependencies = [
-    "xiaoapi==0.0.1",
+    "xiaoapi",
     "redis==5.0.1",
 ]
 dynamic = ["version"]

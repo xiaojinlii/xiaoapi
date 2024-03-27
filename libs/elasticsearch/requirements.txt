@@ -1,2 +1,2 @@
-xiaoapi==0.0.1
+xiaoapi
 elasticsearch[async]==8.11.0

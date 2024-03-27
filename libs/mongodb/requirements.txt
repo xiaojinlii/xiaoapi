@@ -1,2 +1,2 @@
-xiaoapi==0.0.1
+xiaoapi
 motor==3.3.2

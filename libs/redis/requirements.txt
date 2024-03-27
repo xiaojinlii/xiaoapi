@@ -1,2 +1,2 @@
-xiaoapi==0.0.1
+xiaoapi
 redis==5.0.1
