@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "xiaoapi-redis"
+authors = [
+    {name = "xiaojinli", email = "553555614@qq.com"},
+]
+description = "xiaoapi redis"
+readme = "README.md"
+requires-python = ">=3.8"
+keywords = ["xiaoapi", "fastapi", "web-framework", "redis"]
+license = {text = "MIT"}
+classifiers = [
+    "Framework :: FastAPI",
+    "Programming Language :: Python :: 3",
+]
+dependencies = [
+    "xiaoapi==0.0.1",
+    "redis==5.0.1",
+]
+dynamic = ["version"]
+
+[project.urls]
+"Documentation" = "https://github.com/xiaojinlii/xiaoapi/blob/main/README.md"
+"Repository" = "https://github.com/xiaojinlii/xiaoapi"
+"Source Code" = "https://github.com/xiaojinlii/xiaoapi"
+
+[tool.setuptools]
+packages = ["xiaoapi_redis"]
+
+[tool.setuptools.dynamic]
+version = {attr = "xiaoapi_redis.__version__"}

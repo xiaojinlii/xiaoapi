@@ -1,0 +1,2 @@
+xiaoapi==0.0.1
+elasticsearch[async]==8.11.0
