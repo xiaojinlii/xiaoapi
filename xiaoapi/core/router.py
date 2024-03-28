@@ -8,11 +8,11 @@ def register_routes(app: FastAPI):
     注册路由
     """
 
-    routers_module = os.environ.get('FASTAPI_ROUTES_MODULE')
+    routers_module = os.environ.get('XIAOAPI_ROUTES_MODULE')
     if not routers_module:
         raise ValueError(
             "Requested routers, but routers are not configured. "
-            "You must define the environment variable FASTAPI_ROUTES_MODULE "
+            "You must define the environment variable XIAOAPI_ROUTES_MODULE "
             "before accessing settings."
         )
 

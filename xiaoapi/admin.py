@@ -3,7 +3,7 @@ import os
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault('FASTAPI_SETTINGS_MODULE', 'xiaoapi.conf.global_settings')
+    os.environ.setdefault('XIAOAPI_SETTINGS_MODULE', 'xiaoapi.conf.global_settings')
     try:
         from .management import admin_typer
     except ImportError as exc:

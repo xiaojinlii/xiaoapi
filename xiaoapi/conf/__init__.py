@@ -1,7 +1,7 @@
 """
 Settings and configuration for FastAPI.
 
-Read values from the module specified by the FASTAPI_SETTINGS_MODULE environment
+Read values from the module specified by the XIAOAPI_SETTINGS_MODULE environment
 variable, and then from xiaoapi.conf.global_settings; see the global_settings.py
 for a list of all possible variables.
 
@@ -14,7 +14,7 @@ import os
 from . import global_settings
 
 
-ENVIRONMENT_VARIABLE = "FASTAPI_SETTINGS_MODULE"
+ENVIRONMENT_VARIABLE = "XIAOAPI_SETTINGS_MODULE"
 
 
 class Settings:

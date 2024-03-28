@@ -19,5 +19,20 @@ if hasattr(settings, 'BASE_DIR'):
     log_path_info = os.path.join(log_path, 'info.log')
     log_path_error = os.path.join(log_path, 'error.log')
 
-    info = logger.add(log_path_info, rotation="00:00", retention="30 days", enqueue=True, encoding="UTF-8", level="INFO")
-    error = logger.add(log_path_error, rotation="00:00", retention="30 days", enqueue=True, encoding="UTF-8", level="ERROR")
+    isdebug = getattr(settings, 'DEBUG', False)
+    info = logger.add(
+        log_path_info,
+        rotation="00:00",
+        retention="30 days",
+        enqueue=True,
+        encoding="UTF-8",
+        level="DEBUG" if isdebug else "INFO"
+    )
+    error = logger.add(
+        log_path_error,
+        rotation="00:00",
+        retention="30 days",
+        enqueue=True,
+        encoding="UTF-8",
+        level="ERROR"
+    )

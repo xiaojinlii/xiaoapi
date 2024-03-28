@@ -1,6 +1,6 @@
 """
 Default FastAPI settings. Override these with settings in the module pointed to
-by the FASTAPI_SETTINGS_MODULE environment variable.
+by the XIAOAPI_SETTINGS_MODULE environment variable.
 """
 
 import os
