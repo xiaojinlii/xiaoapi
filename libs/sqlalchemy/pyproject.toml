@@ -17,7 +17,7 @@ classifiers = [
     "Programming Language :: Python :: 3",
 ]
 dependencies = [
-    "xiaoapi",
+    "xiaoapi>=0.0.2",
     "SQLAlchemy==2.0.25",
     "aiosqlite==0.20.0",
 ]
