@@ -34,3 +34,6 @@ python manage.py run-server
 
 ## demo演示
 - https://github.com/xiaojinlii/xiaoapi-demo
+
+## todo
+依赖库版本号待优化

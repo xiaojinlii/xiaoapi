@@ -53,6 +53,7 @@ ALLOW_HEADERS = ["*"]
 ############
 # MOUNTING #
 ############
+SWAGGER_UI_ENABLE = True
 # docs ui assets root
 DOCS_URL = "/docs"
 DOCS_ROOT = os.path.join(PACKAGE_DIR, "static")

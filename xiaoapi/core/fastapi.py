@@ -33,7 +33,8 @@ def get_fastapi_application():
     # 全局异常捕捉处理
     register_exception(application)
     # 配置接口文档静态资源
-    custom_api_docs(application)
+    if settings.SWAGGER_UI_ENABLE:
+        custom_api_docs(application)
     # 挂载文件目录
     register_mounting(application)
 

@@ -56,7 +56,11 @@ def register_exception(app: FastAPI):
             print("捕捉到重写HTTPException异常异常：unicorn_exception_handler")
             print(exc.detail)
         # 打印栈信息，方便追踪排查异常
-        logger.exception(exc)
+        if exc.detail == "Not Found":
+            # 健康检测、漏洞检测等会频繁的打印异常，占用大量的空间，不便于查日志
+            logger.error(exc)
+        else:
+            logger.exception(exc)
         return JSONResponse(
             status_code=200,
             content={
